@@ -8,13 +8,179 @@
 </script>
 
 <div>
-    <form action="/count" method="post" name="counterForm" >
+    <table class="carts">
+               <form action="/count" method="post" >
+                <tr>
+                <td class="item">
+                    <h3 class="item">Small Pizza</h3>
+                </td>
+                <td></td>
+                <td>
+                    <h3 class="smallPizzaQuantity item">{{quantities.smallQuantity}}</h3>
+                </td>
+                <td></td>
+                <td>
+                    <h3 class="item">R<span class="smallPizzaTotal">{{totals.smallTotal}}</span>
+                </td>
+            </tr>
+             <tr>
+                <td class="item">
+                    <h3 class="item">medium Pizza</h3>
+                </td>
+                <td></td>
+                <td>
+                    <h3 class="mediumPizzaQuantity item">{{quantities.smallQuantity}}</h3>
+                </td>
+                <td></td>
+                <td>
+                    <h3 class="item">R<span class="mediumPizzaTotal">{{totals.smallTotal}}</span>
+                </td>
+            </tr>
+             <tr>
+                <td class="item">
+                    <h3 class="item">large Pizza</h3>
+                </td>
+                </td>
+                <td>
+                    <h3 class="largePizzaQuantity item">{{quantities.smallQuantity}}</h3>
+                </td>
+                <td></td>
+                <td>
+                    <h3 class="item">R<span class="largePizzaTotal">{{totals.smallTotal}}</span>
+                </td>
+            </tr>
+            
+            <tr>
+                <form action="/" method="POST"></form>
+                <td colspan="4">
+                    <h3 class="item">Total Cost</h3>
+                </td>
+                <td>
+                    <h3 class="item">R<span class="cartTotal">{{totals.totalCart}}</span></h3>
+                </td>
+            </tr>
+
+            <tr>
+              <td colspan="5">
+                    
+                    <a href="order" class="order {{hiddenBtn}}"  name="order" >Order</a>
+                  
+                </td>
+                </form>
+            </tr>
+        </table> 
+         
+    <!---->
+
+    <form action="/count" method="post" name="counterForm" class="counterForm" >
         <div class="counter" >
             {{counter}}
-        </div>    
-        <input type="submit" name="action" value="Press button to count">
-        <input type="submit" name="action" value="Reset the counter" onclick="confirmDelete(event)"  >
+        </div>   
+        
+        <input type="submit" name="action" value="Press button to count">  
+        <input type="submit" name="action" value="Reset the counter" onclick="confirmDelete(event)">
+  </form>
 
-    </form>
+
+   <!---->
+     <div class="payOut hidden">
+            <table class="carts">
+                <tr>
+                    <form action="/" method="POST">
+                    <h3 class="hidden item message">Message</h3>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Payment Amount:</h3>
+                    </td>
+                    <td class="pAmt">R<input class="payAmt" type="number"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button class="payBtn"  name="pay">Pay</button>
+                    </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="pizzas">
+        <div class="contain small-pizza">
+
+            <h2>Small Pizza</h2>
+
+            <div class="pizza-img">
+                <img src="/image/hut.jpg" width="100">
+            </div>
+
+            <h3>R49.00</h3>
+            <p>feta, mozzarella and cheddar cheeses,
+                peperoni, hot peppers, <br>
+               chili flakes and caramelized onions</p>
+             <div><a href="/buy-small " class="plusBtn small buy" value="smallAdd" data-size="smallPlus" name="addBtn">Buy</a></div>
+
+          </div>
+
+        <div class="contain medium-pizza">
+
+            <h2>Medium Pizza</h2>
+
+            <div class="pizza-img">
+                <img src="/image/hut.jpg" width="150">
+            </div>
+
+            <h3>R89.00</h3>
+            <p>feta, mozzarella and cheddar cheeses,
+                peperoni, hot peppers, <br>
+               chili flakes and caramelized onions</p>
+                
+                <div> <a href="/buy-medium" class="plusBtn medium buy" value="mediumAdd" data-size="mediumPlus" name="addBtn">Buy</a></div>
+
+          </div>
+
+        <div class="contain large-pizza">
+
+            <h2>Large Pizza</h2>
+
+            <div class="pizza-img">
+                <img src="/image/hut.jpg" width="250">
+            </div>
+
+            <h3>R129.00</h3>
+            <p>
+                feta, mozzarella and cheddar cheeses,
+                peperoni, hot peppers,<br>
+                 chili flakes and caramelized onions
+                </p>
+                <div><a href="/buy-large" class="plusBtn large buy" value="largeAdd" data-size="largePlus" name="addBtn">Buy</button></div>
+           
+          </div>
+    </div>
+
+    <div class="contain contact-us">
+
+        <h2>Contact Details</h2>
+
+        <p id="contact">
+            Contact us at: 0761890918 <br>
+            info@pizzaPerfect.co.za <br>
+            Whatsapp/Facebook/Instagram <br>
+            @pizzaPerfect
+        </p>
+
+        <p id="location">
+            bluehills <br>
+            mall of Africa 
+        </p>
+    </div>
+
+    <div class="footer">
+        Viollah Mudau | Pizza Perfect Cart |  2021
+    </div>
+      
+    {{!-- <script src="js/app-factory.js"></script>
+    <script src="js/app.js" charset="utf-8"></script> --}}
+    
 
 </div>

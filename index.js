@@ -1,5 +1,9 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+let Factory = require('./app');
+const pizzaCart = Factory();
+
 
 // import sqlite modules
 const sqlite3 = require('sqlite3');
@@ -12,8 +16,25 @@ const PORT = process.env.PORT || 3017;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 // enable the static folder...
 app.use(express.static('public'));
+//
+app.get('/',function(req,res){
+	let totals = pizzaCart.getTotals();
+	let quantities = pizzaCart.getQuantities();
+	let hiddenBtn = pizzaCart.getHiddenBtn();
+	
+   
+	   res.render('index', {
+		   totals,
+		   quantities,
+		   hiddenBtn
+	   })
+   
+   });
 
 // add more middleware to allow for templating support
 app.engine('handlebars', exphbs());
@@ -39,6 +60,13 @@ open({
 			counter: counter ? counter.count : 0
 		});
 	});
+//order
+const order = {
+	orderId : 32,
+	status : "Payment due",
+	amount : 213.97
+  }
+
 
 	app.post('/count', async function (req, res) {
 
@@ -69,8 +97,47 @@ open({
 
 		res.redirect('/')
 	});
+//
 
+// 
+	app.get('/buy-small', function(req,res){
+		pizzaCart.buySmall();
+	   
+		res.redirect('/');
+		 
+	   });
+	   app.get('/buy-medium', function(req,res){
+		   pizzaCart.buyMedium();
+		  
+		   res.redirect('/');
+			
+		  });
+		  app.get('/buy-large', function(req,res){
+		   pizzaCart.buyLarge();
+		  
+		   res.redirect('/');
+			
+		  });
+		  app.get('/remove-small', function(req,res){
+		   pizzaCart.removeSmall();
+		  
+		   res.redirect('/');
+			
+		  });
+		  app.get('/remove-medium', function(req,res){
+		   pizzaCart.removeMedium();
+		  
+		   res.redirect('/');
+			
+		  });
+		  app.get('/remove-large', function(req,res){
+		   pizzaCart.removeLarge();
+		  
+		   res.redirect('/');
+			
+		  });
 
+    
 	// start  the server and start listening for HTTP request on the PORT number specified...
 	app.listen(PORT, function () {
 		console.log(`App started on port ${PORT}`)
