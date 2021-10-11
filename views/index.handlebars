@@ -29,11 +29,11 @@
                 </td>
                 <td></td>
                 <td>
-                    <h3 class="mediumPizzaQuantity item">{{quantities.smallQuantity}}</h3>
+                    <h3 class="mediumPizzaQuantity item">{{quantities.mediumQuantity}}</h3>
                 </td>
                 <td></td>
                 <td>
-                    <h3 class="item">R<span class="mediumPizzaTotal">{{totals.smallTotal}}</span>
+                    <h3 class="item">R<span class="mediumPizzaTotal">{{totals.mediumTotal}}</span>
                 </td>
             </tr>
              <tr>
@@ -42,11 +42,11 @@
                 </td>
                 </td>
                 <td>
-                    <h3 class="largePizzaQuantity item">{{quantities.smallQuantity}}</h3>
+                    <h3 class="largePizzaQuantity item">{{quantities.largeQuantity}}</h3>
                 </td>
                 <td></td>
                 <td>
-                    <h3 class="item">R<span class="largePizzaTotal">{{totals.smallTotal}}</span>
+                    <h3 class="item">R<span class="largePizzaTotal">{{totals.largeTotal}}</span>
                 </td>
             </tr>
             
@@ -69,20 +69,17 @@
                 </form>
             </tr>
         </table> 
-         
-    <!---->
+     <!---->
 
     <form action="/count" method="post" name="counterForm" class="counterForm" >
-        <div class="counter" >
+        {{!-- <div class="counter" >
             {{counter}}
-        </div>   
+        </div>     --}}
         
-        <input type="submit" name="action" value="Press button to count">  
-        <input type="submit" name="action" value="Reset the counter" onclick="confirmDelete(event)">
-  </form>
-
-
-   <!---->
+        {{!-- <input type="submit" name="action" value="Press button to count">  
+        <input type="submit" name="action" value="Reset the counter" onclick="confirmDelete(event)"> --}}
+  </form> 
+ <!---->
      <div class="payOut hidden">
             <table class="carts">
                 <tr>
@@ -153,7 +150,7 @@
                 peperoni, hot peppers,<br>
                  chili flakes and caramelized onions
                 </p>
-                <div><a href="/buy-large" class="plusBtn large buy" value="largeAdd" data-size="largePlus" name="addBtn">Buy</button></div>
+                <div><a href="/buy-large" class="plusBtn large buy" value="largeAdd" data-size="largePlus" name="addBtn">Buy</a></div>
            
           </div>
     </div>

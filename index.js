@@ -61,11 +61,11 @@ open({
 		});
 	});
 //order
-const order = {
-	orderId : 32,
-	status : "Payment due",
-	amount : 213.97
-  }
+// const order = {
+// 	orderId : 32,
+// 	status : "Payment due",
+// 	amount : 213.97
+//   };
 
 
 	app.post('/count', async function (req, res) {
@@ -136,6 +136,12 @@ const order = {
 		   res.redirect('/');
 			
 		  });
+		  //
+		  app.get('/order',function(req,res){
+			pizzaCart.checkOutClick();
+			
+			res.redirect('/');
+		   });
 
     
 	// start  the server and start listening for HTTP request on the PORT number specified...

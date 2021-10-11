@@ -119,6 +119,7 @@ module.exports=function Factory() {
         showCheckoutBtn();
         
     }
+   
     function getTotals(){
         return {
             smallTotal,
@@ -169,16 +170,16 @@ cartTotal.innerHTML= factoryFunction.priceUpdate().totalCart;
   
 
     if (factoryFunction.priceUpdate().totalCart > 0) {
-        checkOut.classList.remove('hidden');
+        order.classList.remove('hidden');
     } else {
-        checkOut.classList.add('hidden');
+        order.classList.add('hidden');
         payOut.classList.add('hidden');
     }
 }
 
 
 function checkOutClick(){
-    checkOut.classList.add('hidden');
+    order.classList.add('hidden');
     payOut.classList.remove('hidden');
 }
 
@@ -189,7 +190,7 @@ function payment() {
     if (paymentAmt == factoryFunction.priceUpdate().totalCart) {
         
         message.innerHTML = "Enjoy your Pizza!";
-        checkOut.classList.remove('hidden');
+        order.classList.remove('hidden');
         factoryFunction.resetCart();
         
 
@@ -207,7 +208,7 @@ function payment() {
         setTimeout(function () {
             
             message.classList.toggle('hidden');
-            checkOut.classList.toggle('hidden');
+            order.classList.toggle('hidden');
             payOut.classList.add('hidden');
             payAmt.value = "";
         }, 4500);
@@ -217,7 +218,7 @@ function payment() {
        
         message.innerHTML = "Enjoy your Pizza, here's your change R" + factoryFunction.change(paymentAmt);
         factoryFunction.resetCart();
-        checkOut.classList.toggle('hidden');
+        order.classList.toggle('hidden');
         
         smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
         mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
@@ -233,7 +234,7 @@ function payment() {
         setTimeout(function () {
             
             message.classList.toggle('hidden');
-            checkOut.classList.toggle('hidden');
+            order.classList.toggle('hidden');
             payOut.classList.add('hidden');
             payAmt.value = "";
         }, 4500);
@@ -244,9 +245,21 @@ function payment() {
         message.innerHTML = "Sorry, insuffient!";
         setTimeout(function () {
             message.classList.toggle('hidden');
-            checkOut.classList.add('hidden');
+            order.classList.add('hidden');
            
         }, 4500);
+    }
+}
+//
+function getCart(req) {
+      
+    const username = req.session.username
+    if (username) {
+        // note a user might nor have a cart yet - handle that inside the Factory Function.
+        return factoryFunction.getCart(username);
+    } else {
+        // not logged in we can't do much
+        // res.redirect('/login');
     }
 }
 
@@ -267,7 +280,9 @@ function payment() {
         getQuantities,
         getHiddenBtn,
         checkOutClick,
-        payment
+        payment,
+        getCart,
+        
         
     }
 
