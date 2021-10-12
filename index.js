@@ -42,45 +42,75 @@ app.set('view engine', 'handlebars');
 
 // database setup starts here
 open({
-	filename: './sqlite.db',
+	filename: './pizzaTable.db',
 	driver: sqlite3.Database
 }).then(async (db) => {
 
 	// only setup the routes once the database connection has been established
 
 	await db.migrate();
-
-	let counter = 0;
-
 	app.get('/', async function (req, res) {
-        
-		  const counter = await db.get('select * from counter');
-
-		res.render('index', {
-			counter: counter ? counter.count : 0,
-			total:'147'
+		db.all('SELECT * FROM pizzaTable').then(function(pizzaTable){
+			console.log(pizzaTable);
+		})
+		res.render('index',{
+			checkOut
 		});
 	});
+
+	// let counter = 0;
+
+	// app.get('/', async function (req, res) {
+        
+	// 	  const counter = await db.get('select * from counter');
+
+	// 	res.render('index', {
+	// 		counter: counter ? counter.count : 0,
+	// 		total:'147'
+	// 	});
+	// });
+	//
+	
 	app.get('/checkOut/:total',function(req,res){
-		// checkOut..add('hidden');
-		// payOut.classList.remove('hidden');
+		
 		console.log(req.params);
 		res.redirect('/checkOut')
 	   });
 	   app.get('/checkOut',async function(req,res){
 		   let orders =[];
-		   const orderData= await db.get('SELECT * FROM data');
+		   const orderData= await db.all('SELECT * FROM pizzaTable')
+		
             orders.push(orderData)
-		   console.log(orderData)
-		   res.render('checkOut', {
-		   order:orders,
+		    console.log(orderData)
+		    res.render('checkOut', {
+			display:orders,
+
+		   }
 		   
-
-         }
-
 		   );
 		
-	   })
+		
+	   });
+	   //
+// 	   open({
+// 		filename: './sqlite(1).db',
+// 		driver: sqlite3.Database
+// 	}).then(async (db) => {
+
+// 	   app.get('/checkOut',async function(req,res){
+// 		let orders =[];
+// 		const orderData= await db.get('SELECT * FROM data');
+	   
+// 		order.push(orderData)
+// 		console.log(orderData)
+// 		res.render('checkOut', {
+// 		order:orders,
+// 		}
+		
+//       );
+	 
+// 	});
+// });
    
 
   app.post('/count', async function (req, res) {
