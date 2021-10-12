@@ -51,7 +51,7 @@
             </tr>
             
             <tr>
-                <form action="/" method="POST"></form>
+               
                 <td colspan="4">
                     <h3 class="item">Total Cost</h3>
                 </td>
@@ -63,13 +63,17 @@
             <tr>
               <td colspan="5">
                     
-                    <a href="order" class="order {{hiddenBtn}}"  name="order" >Order</a>
-                  
+                     <a href="/checkOut/{{totals.totalCart}}" class="checkOut {{hiddenBtn}}"  name="checkOut" >Check Out</a> 
+                 
                 </td>
                 </form>
+                  {{!-- <form action="/checkOut" method="POST">
+                  <input type="text" name="totalCost" value="{{total}}">
+                 <button class="checkOut {{hiddenBtn}}"  name="checkOut" type="submit">Check Out</button>
+                </form> --}}
             </tr>
         </table> 
-     <!---->
+       
 
     <form action="/count" method="post" name="counterForm" class="counterForm" >
         {{!-- <div class="counter" >

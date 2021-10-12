@@ -119,6 +119,7 @@ module.exports=function Factory() {
         showCheckoutBtn();
         
     }
+  
    
     function getTotals(){
         return {
@@ -157,29 +158,29 @@ function BtnClicked(event) {
     factoryFunction.BtnClicked(event.target.dataset.size);
 
     
-smallPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().smallQuantity;
-mediumPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().mediumQuantity;
-largePizzaQuantity.innerHTML= factoryFunction.quantityUpdate().largeQuantity;
+// smallPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().smallQuantity;
+// mediumPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().mediumQuantity;
+// largePizzaQuantity.innerHTML= factoryFunction.quantityUpdate().largeQuantity;
 
 
-smallPizzaTotal.innerHTML= factoryFunction.priceUpdate().smallTotal;
-mediumPizzaTotal.innerHTML= factoryFunction.priceUpdate().mediumTotal;
-largePizzaTotal.innerHTML= factoryFunction.priceUpdate().largeTotal;
-cartTotal.innerHTML= factoryFunction.priceUpdate().totalCart;
+// smallPizzaTotal.innerHTML= factoryFunction.priceUpdate().smallTotal;
+// mediumPizzaTotal.innerHTML= factoryFunction.priceUpdate().mediumTotal;
+// largePizzaTotal.innerHTML= factoryFunction.priceUpdate().largeTotal;
+// cartTotal.innerHTML= factoryFunction.priceUpdate().totalCart;
     
   
 
     if (factoryFunction.priceUpdate().totalCart > 0) {
-        order.classList.remove('hidden');
+        checkOut.classList.remove('hidden');
     } else {
-        order.classList.add('hidden');
+        checkOut.classList.add('hidden');
         payOut.classList.add('hidden');
     }
 }
 
 
 function checkOutClick(){
-    order.classList.add('hidden');
+    checkOut.classList.add('hidden');
     payOut.classList.remove('hidden');
 }
 
@@ -190,25 +191,25 @@ function payment() {
     if (paymentAmt == factoryFunction.priceUpdate().totalCart) {
         
         message.innerHTML = "Enjoy your Pizza!";
-        order.classList.remove('hidden');
+        checkOut.classList.remove('hidden');
         factoryFunction.resetCart();
         
 
-        smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
-        mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
-        largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
+    //     smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
+    //     mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
+    //     largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
 
-        smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
-        mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
-       largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
-       cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
+    //     smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
+    //     mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
+    //    largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
+    //    cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
 
        
 
         setTimeout(function () {
             
             message.classList.toggle('hidden');
-            order.classList.toggle('hidden');
+            checkOut.classList.toggle('hidden');
             payOut.classList.add('hidden');
             payAmt.value = "";
         }, 4500);
@@ -218,23 +219,23 @@ function payment() {
        
         message.innerHTML = "Enjoy your Pizza, here's your change R" + factoryFunction.change(paymentAmt);
         factoryFunction.resetCart();
-        order.classList.toggle('hidden');
+        checkOut.classList.toggle('hidden');
         
-        smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
-        mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
-        largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
+    //     smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
+    //     mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
+    //     largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
 
-        smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
-        mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
-       largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
-       cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
+    //     smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
+    //     mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
+    //    largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
+    //    cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
  
 
 
         setTimeout(function () {
             
             message.classList.toggle('hidden');
-            order.classList.toggle('hidden');
+            checkOut.classList.toggle('hidden');
             payOut.classList.add('hidden');
             payAmt.value = "";
         }, 4500);
@@ -245,12 +246,12 @@ function payment() {
         message.innerHTML = "Sorry, insuffient!";
         setTimeout(function () {
             message.classList.toggle('hidden');
-            order.classList.add('hidden');
+            checkOut.classList.add('hidden');
            
         }, 4500);
     }
 }
-//
+
 function getCart(req) {
       
     const username = req.session.username
@@ -281,8 +282,8 @@ function getCart(req) {
         getHiddenBtn,
         checkOutClick,
         payment,
-        getCart,
-        
+        getCart
+       
         
     }
 

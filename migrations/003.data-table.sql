@@ -1,0 +1,6 @@
+-- create table data(
+-- orderId integer primary key AUTOINCREMENT,
+-- pizzaType varchar,
+-- statusCheck  varchar,
+-- amount decimal 
+-- );

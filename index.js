@@ -42,7 +42,7 @@ app.set('view engine', 'handlebars');
 
 // database setup starts here
 open({
-	filename: './data.db',
+	filename: './sqlite.db',
 	driver: sqlite3.Database
 }).then(async (db) => {
 
@@ -53,22 +53,37 @@ open({
 	let counter = 0;
 
 	app.get('/', async function (req, res) {
-
-		const counter = await db.get('select * from counter');
+        
+		  const counter = await db.get('select * from counter');
 
 		res.render('index', {
-			counter: counter ? counter.count : 0
+			counter: counter ? counter.count : 0,
+			total:'147'
 		});
 	});
-//order
-// const order = {
-// 	orderId : 32,
-// 	status : "Payment due",
-// 	amount : 213.97
-//   };
+	app.get('/checkOut/:total',function(req,res){
+		// checkOut..add('hidden');
+		// payOut.classList.remove('hidden');
+		console.log(req.params);
+		res.redirect('/checkOut')
+	   });
+	   app.get('/checkOut',async function(req,res){
+		   let orders =[];
+		   const orderData= await db.get('SELECT * FROM data');
+            orders.push(orderData)
+		   console.log(orderData)
+		   res.render('checkOut', {
+		   order:orders,
+		   
 
+         }
 
-	app.post('/count', async function (req, res) {
+		   );
+		
+	   })
+   
+
+  app.post('/count', async function (req, res) {
 
 		try {
 			
@@ -97,8 +112,6 @@ open({
 
 		res.redirect('/')
 	});
-//
-
 // 
 	app.get('/buy-small', function(req,res){
 		pizzaCart.buySmall();
@@ -137,11 +150,26 @@ open({
 			
 		  });
 		  //
-		  app.get('/order',function(req,res){
-			pizzaCart.checkOutClick();
+		  
+        //   app.get('/BtnClicked',function(req,res){
+		// 	factoryFunction.BtnClicked(event.target.dataset.size);
+		// 	res.redirect('/')
+		//   })
+
+		 
+		//    app.get('/payment',function(req,res){
+        //     var paymentAmt = Number(payAmt.value);
+
+		// 	message.innerHTML = "Enjoy your Pizza!";
+		// 	checkOut.classList.remove('hidden');
+		// 	factoryFunction.resetCart();
 			
-			res.redirect('/');
-		   });
+		// 	message.innerHTML = "Enjoy your Pizza, here's your change R" + factoryFunction.change(paymentAmt);
+        //    factoryFunction.resetCart();
+        //     checkOut.classList.toggle('hidden');
+		// 	res.redirect('/')
+		//    });
+
 
     
 	// start  the server and start listening for HTTP request on the PORT number specified...

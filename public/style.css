@@ -63,7 +63,7 @@ p{
     text-align: center;
 }
 
-.order, .payBtn {
+.checkOut, .payBtn {
     display: block;
     margin: auto;
     border-radius: 1em;
