@@ -44,18 +44,24 @@ app.set('view engine', 'handlebars');
 open({
 	filename: './pizzaTable.db',
 	driver: sqlite3.Database
-}).then(async (db) => {
+}).then(async function (db)  {
 
 	// only setup the routes once the database connection has been established
 
 	await db.migrate();
 	app.get('/', async function (req, res) {
-		db.all('SELECT * FROM pizzaTable').then(function(pizzaTable){
-			console.log(pizzaTable);
+		const pizzaTable= await db.all('SELECT * FROM pizzaTable').then(function(pizzaTable){
+			// console.log(pizzaTable);
+		
+			res.render('index',{
+				// checkOut
+				pizzaTable
+				
+			});
+
 		})
-		res.render('index',{
-			checkOut
-		});
+		
+		
 	});
 
 	// let counter = 0;
@@ -77,41 +83,20 @@ open({
 		res.redirect('/checkOut')
 	   });
 	   app.get('/checkOut',async function(req,res){
-		   let orders =[];
+		//    let orders =[];
 		   const orderData= await db.all('SELECT * FROM pizzaTable')
-		
-            orders.push(orderData)
+		  
+            // orders.push(orderData)
 		    console.log(orderData)
 		    res.render('checkOut', {
-			display:orders,
+			order:orderData,
 
 		   }
-		   
-		   );
-		
+		    );
+			
 		
 	   });
 	   //
-// 	   open({
-// 		filename: './sqlite(1).db',
-// 		driver: sqlite3.Database
-// 	}).then(async (db) => {
-
-// 	   app.get('/checkOut',async function(req,res){
-// 		let orders =[];
-// 		const orderData= await db.get('SELECT * FROM data');
-	   
-// 		order.push(orderData)
-// 		console.log(orderData)
-// 		res.render('checkOut', {
-// 		order:orders,
-// 		}
-		
-//       );
-	 
-// 	});
-// });
-   
 
   app.post('/count', async function (req, res) {
 
@@ -181,24 +166,24 @@ open({
 		  });
 		  //
 		  
-        //   app.get('/BtnClicked',function(req,res){
-		// 	factoryFunction.BtnClicked(event.target.dataset.size);
-		// 	res.redirect('/')
-		//   })
+          app.get('/BtnClicked',function(req,res){
+			factoryFunction.BtnClicked(event.target.dataset.size);
+			res.redirect('/')
+		  })
 
 		 
-		//    app.get('/payment',function(req,res){
-        //     var paymentAmt = Number(payAmt.value);
+		   app.get('/pay',function(req,res){
+            var paymentAmt = Number(payAmt.value);
 
-		// 	message.innerHTML = "Enjoy your Pizza!";
-		// 	checkOut.classList.remove('hidden');
-		// 	factoryFunction.resetCart();
+			message.innerHTML = "Enjoy your Pizza!";
+			checkOut.classList.remove('hidden');
+			factoryFunction.resetCart();
 			
-		// 	message.innerHTML = "Enjoy your Pizza, here's your change R" + factoryFunction.change(paymentAmt);
-        //    factoryFunction.resetCart();
-        //     checkOut.classList.toggle('hidden');
-		// 	res.redirect('/')
-		//    });
+			message.innerHTML = "Enjoy your Pizza, here's your change R" + factoryFunction.change(paymentAmt);
+           factoryFunction.resetCart();
+            checkOut.classList.toggle('hidden');
+			res.redirect('/')
+		   });
 
 
     

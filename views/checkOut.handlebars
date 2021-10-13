@@ -10,13 +10,26 @@
 <body>
     <h1>check out</h1>
 
-  {{#each display}}
+  {{!-- {{#each order}}
   {{orderId}}
   {{pizzaType}}
   {{statusCheck}}
   {{amount}}
-  {{/each}}
+  {{/each}} --}}
+<ul>
+    {{#each order}}
+    <li>
+ {{orderId}}
+  {{pizzaType}}
+  {{statusCheck}}
+  {{amount}}
+  <button class="bton">{{statusCheck}}</button>
+  
+    </li>
+    {{/each}}
 
+</ul>
+<button class="newOrd">add-order</button>
   {{!--  --}}
 
  

@@ -61,8 +61,18 @@ p{
 
 .item {
     text-align: center;
+    /* background-color:palevioletred; */
 }
 
+.bton{
+    border-radius: 1em;
+    
+}
+.newOrd{
+    text-align: center;
+    border-radius: 1em;
+    background-color:greenyellow;
+}
 .checkOut, .payBtn {
     display: block;
     margin: auto;
