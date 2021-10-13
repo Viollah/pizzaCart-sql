@@ -5,6 +5,7 @@ let Factory = require('./app');
 const pizzaCart = Factory();
 
 
+
 // import sqlite modules
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
@@ -22,6 +23,9 @@ app.use(bodyParser.json());
 // enable the static folder...
 app.use(express.static('public'));
 //
+
+// app.use(session({secret: 'keyboard cat' , cookie: {maxAge:60000}}))
+
 app.get('/',function(req,res){
 	let totals = pizzaCart.getTotals();
 	let quantities = pizzaCart.getQuantities();
@@ -64,18 +68,19 @@ open({
 		
 	});
 
-	// let counter = 0;
-
-	// app.get('/', async function (req, res) {
+	let counter = 0;
+//
+   
+	app.get('/', async function (req, res) {
         
-	// 	  const counter = await db.get('select * from counter');
+		  const counter = await db.get('select * from counter');
 
-	// 	res.render('index', {
-	// 		counter: counter ? counter.count : 0,
-	// 		total:'147'
-	// 	});
-	// });
-	//
+		res.render('index', {
+			counter: counter ? counter.count : 0,
+			total:'147'
+		});
+	});
+	
 	
 	app.get('/checkOut/:total',function(req,res){
 		
@@ -83,10 +88,10 @@ open({
 		res.redirect('/checkOut')
 	   });
 	   app.get('/checkOut',async function(req,res){
-		//    let orders =[];
+		
 		   const orderData= await db.all('SELECT * FROM pizzaTable')
 		  
-            // orders.push(orderData)
+           
 		    console.log(orderData)
 		    res.render('checkOut', {
 			order:orderData,
@@ -99,7 +104,10 @@ open({
 	   //
 
   app.post('/count', async function (req, res) {
-
+     
+	//
+	
+    //
 		try {
 			
 			console.log(req.body);
@@ -165,6 +173,35 @@ open({
 			
 		  });
 		  //
+
+		  app.get('/getCart',function(req,res){
+
+		  })
+		  //
+		  app.get('/login',function(req,res){
+			  res.render('login');
+		  })
+
+           
+		  app.post('/login',function(req,res){
+			
+			if(req.body.username){
+				
+				res.redirect('/')			
+			}else{
+				res.redirect('/login')
+			}
+			
+			//res.render('login');
+			if(req.body.password){
+				
+				res.redirect('/')			
+			}else{
+				res.redirect('/login')
+			}
+		   
+		})
+
 		  
           app.get('/BtnClicked',function(req,res){
 			factoryFunction.BtnClicked(event.target.dataset.size);

@@ -73,6 +73,32 @@ p{
     border-radius: 1em;
     background-color:greenyellow;
 }
+.user, .pass{
+    text-align: center;
+    display: flex;
+   
+}
+.button{
+    text-align: left;
+}
+form{
+    margin: 0 auto;
+    width: 250px;
+    text-align: center;
+}
+.list{
+    margin: 0 auto;
+    width: 400px;
+    text-align: center;
+    
+}
+.lists{
+    list-style-type: none;
+
+}
+button{
+    text-align: center;
+}
 .checkOut, .payBtn {
     display: block;
     margin: auto;

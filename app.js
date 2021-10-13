@@ -157,18 +157,6 @@ module.exports=function Factory() {
 function BtnClicked(event) {
     factoryFunction.BtnClicked(event.target.dataset.size);
 
-    
-// smallPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().smallQuantity;
-// mediumPizzaQuantity.innerHTML= factoryFunction.quantityUpdate().mediumQuantity;
-// largePizzaQuantity.innerHTML= factoryFunction.quantityUpdate().largeQuantity;
-
-
-// smallPizzaTotal.innerHTML= factoryFunction.priceUpdate().smallTotal;
-// mediumPizzaTotal.innerHTML= factoryFunction.priceUpdate().mediumTotal;
-// largePizzaTotal.innerHTML= factoryFunction.priceUpdate().largeTotal;
-// cartTotal.innerHTML= factoryFunction.priceUpdate().totalCart;
-    
-  
 
     if (factoryFunction.priceUpdate().totalCart > 0) {
         checkOut.classList.remove('hidden');
@@ -193,19 +181,7 @@ function payment() {
         message.innerHTML = "Enjoy your Pizza!";
         checkOut.classList.remove('hidden');
         factoryFunction.resetCart();
-        
-
-    //     smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
-    //     mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
-    //     largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
-
-    //     smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
-    //     mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
-    //    largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
-    //    cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
-
-       
-
+   
         setTimeout(function () {
             
             message.classList.toggle('hidden');
@@ -221,18 +197,7 @@ function payment() {
         factoryFunction.resetCart();
         checkOut.classList.toggle('hidden');
         
-    //     smallPizzaQuantity.innerHTML = factoryFunction.resetCart().smallQuantity;
-    //     mediumPizzaQuantity.innerHTML = factoryFunction.resetCart().mediumQuantity;
-    //     largePizzaQuantity.innerHTML = factoryFunction.resetCart().largeQuantity;
-
-    //     smallPizzaTotal.innerHTML= factoryFunction.resetCart().smallTotal;
-    //     mediumPizzaTotal.innerHTML= factoryFunction.resetCart().mediumTotal;
-    //    largePizzaTotal.innerHTML= factoryFunction.resetCart().largeTotal;
-    //    cartTotal.innerHTML= factoryFunction.resetCart().totalCart;
- 
-
-
-        setTimeout(function () {
+    setTimeout(function () {
             
             message.classList.toggle('hidden');
             checkOut.classList.toggle('hidden');
@@ -263,6 +228,7 @@ function getCart(req) {
         // res.redirect('/login');
     }
 }
+//
 
 
     return {
